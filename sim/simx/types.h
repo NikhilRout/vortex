@@ -129,7 +129,8 @@ enum class AluType {
   BRANCH,
   SYSCALL,
   IMUL,
-  IDIV
+  IDIV,
+  DOT8 //new operation ALU can perform
 };
 
 inline std::ostream &operator<<(std::ostream &os, const AluType& type) {
