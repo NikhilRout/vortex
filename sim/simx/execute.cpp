@@ -1430,6 +1430,32 @@ void Emulator::execute(const Instr &instr, uint32_t wid, instr_trace_t *trace) {
         std::abort();
       }
     } break;
+    case 1: {
+      switch (func3) {
+      case 0: { // DOT8
+        trace->fu_type = FUType::ALU;
+        trace->alu_type = AluType::DOT8;
+        trace->src_regs[0] = {RegType::Integer, rsrc0};
+        trace->src_regs[1] = {RegType::Integer, rsrc1};
+        for (uint32_t t = thread_start; t < num_threads; ++t) {
+          if (!warp.tmask.test(t))
+            continue;
+          int32_t a = rsdata[t][0].i;
+          int32_t b = rsdata[t][1].i;
+          int32_t result = 0;
+          for (int i = 0; i < 4; ++i) {
+            int8_t a_i = (int8_t)((a >> (8 * i)) & 0xFF);
+            int8_t b_i = (int8_t)((b >> (8 * i)) & 0xFF);
+            result += a_i * b_i;
+          }
+          rddata[t].i = result;
+        }
+        rd_write = true;
+      } break;
+      default:
+        std::abort();
+      }
+    } break;    
     default:
       std::abort();
     }
