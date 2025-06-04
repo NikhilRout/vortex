@@ -1,0 +1,272 @@
+=== Test 1/8 - Wednesday 04 June 2025 07:52:35 PM IST ===
+Configuration: cores=1, warps=4, threads=4, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=4 --threads=4 --driver=rtlsim --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./sgemmx -n 128
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=2
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 308139 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15355460, cycles=11157196, IPC=1.376283
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 2/8 - Wednesday 04 June 2025 07:58:41 PM IST ===
+Configuration: cores=1, warps=4, threads=4, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=4 --threads=4 --driver=rtlsim --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./dot8 -n 128
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=2
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 227124 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15945284, cycles=8398221, IPC=1.898650
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 3/8 - Wednesday 04 June 2025 08:02:30 PM IST ===
+Configuration: cores=1, warps=16, threads=16, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=16 --threads=16 --driver=rtlsim --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./sgemmx -n 128
+open device connection
+CONFIGS: num_threads=16, num_warps=16, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=8
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 692271 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15405992, cycles=3323648, IPC=4.635266
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 4/8 - Wednesday 04 June 2025 08:15:56 PM IST ===
+Configuration: cores=1, warps=16, threads=16, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=16 --threads=16 --driver=rtlsim --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./dot8 -n 128
+open device connection
+CONFIGS: num_threads=16, num_warps=16, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=8
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 528677 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15995816, cycles=2476146, IPC=6.459965
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 5/8 - Wednesday 04 June 2025 08:24:47 PM IST ===
+Configuration: cores=4, warps=4, threads=4, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=4 --threads=4 --driver=rtlsim --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./sgemmx -n 128
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=4, num_clusters=1, socket_size=4, local_mem_base=0xffff0000, num_barriers=2
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 556694 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3841604, cycles=4349988, IPC=0.883130
+PERF: core1: instrs=3841604, cycles=4349985, IPC=0.883130
+PERF: core2: instrs=3841604, cycles=4349986, IPC=0.883130
+PERF: core3: instrs=3841604, cycles=4349987, IPC=0.883130
+PERF: instrs=15366416, cycles=4349988, IPC=3.532519
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 6/8 - Wednesday 04 June 2025 08:35:51 PM IST ===
+Configuration: cores=4, warps=4, threads=4, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=4 --threads=4 --driver=rtlsim --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./dot8 -n 128
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=4, num_clusters=1, socket_size=4, local_mem_base=0xffff0000, num_barriers=2
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 496861 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3989060, cycles=4108626, IPC=0.970899
+PERF: core1: instrs=3989060, cycles=4107102, IPC=0.971259
+PERF: core2: instrs=3989060, cycles=4107987, IPC=0.971050
+PERF: core3: instrs=3989060, cycles=4109117, IPC=0.970783
+PERF: instrs=15956240, cycles=4109117, IPC=3.883131
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 7/8 - Wednesday 04 June 2025 08:44:10 PM IST ===
+Configuration: cores=4, warps=16, threads=16, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=16 --threads=16 --driver=rtlsim --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./sgemmx -n 128
+open device connection
+CONFIGS: num_threads=16, num_warps=16, num_cores=4, num_clusters=1, socket_size=4, local_mem_base=0xffff0000, num_barriers=8
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 2.05035e+06 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3892136, cycles=1498019, IPC=2.598189
+PERF: core1: instrs=3892136, cycles=1506400, IPC=2.583733
+PERF: core2: instrs=3892136, cycles=1498018, IPC=2.598190
+PERF: core3: instrs=3892136, cycles=1506401, IPC=2.583732
+PERF: instrs=15568544, cycles=1506401, IPC=10.334927
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 8/8 - Wednesday 04 June 2025 09:26:19 PM IST ===
+Configuration: cores=4, warps=16, threads=16, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=16 --threads=16 --driver=rtlsim --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/rtlsim > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-rtlsim
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=rtlsim ./dot8 -n 128
+open device connection
+CONFIGS: num_threads=16, num_warps=16, num_cores=4, num_clusters=1, socket_size=4, local_mem_base=0xffff0000, num_barriers=8
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 2.19706e+06 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=4039592, cycles=1676794, IPC=2.409117
+PERF: core1: instrs=4039592, cycles=1676792, IPC=2.409119
+PERF: core2: instrs=4039592, cycles=1676812, IPC=2.409091
+PERF: core3: instrs=4039592, cycles=1676793, IPC=2.409118
+PERF: instrs=16158368, cycles=1676812, IPC=9.636362
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------

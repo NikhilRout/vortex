@@ -1,0 +1,264 @@
+=== Test 1/8 - Wednesday 04 June 2025 01:10:32 PM IST ===
+Configuration: cores=1, warps=4, threads=4, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=4 --threads=4 --driver=simx --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./sgemmx -n 128
+open device connection
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 31124 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15355459, cycles=12564432, IPC=1.222137
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 2/8 - Wednesday 04 June 2025 01:11:50 PM IST ===
+Configuration: cores=1, warps=4, threads=4, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=4 --threads=4 --driver=simx --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./dot8 -n 128
+open device connection
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 21616 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15945280, cycles=9181495, IPC=1.736676
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 3/8 - Wednesday 04 June 2025 01:12:14 PM IST ===
+Configuration: cores=1, warps=16, threads=16, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=16 --threads=16 --driver=simx --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./sgemmx -n 128
+open device connection
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 13724 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15405991, cycles=3299122, IPC=4.669724
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 4/8 - Wednesday 04 June 2025 01:13:16 PM IST ===
+Configuration: cores=1, warps=16, threads=16, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=1 --warps=16 --threads=16 --driver=simx --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=1 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./dot8 -n 128
+open device connection
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 10295 ms
+download destination buffer
+verify result
+cleanup
+PERF: instrs=15995812, cycles=2104864, IPC=7.599452
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 5/8 - Wednesday 04 June 2025 01:13:28 PM IST ===
+Configuration: cores=4, warps=4, threads=4, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=4 --threads=4 --driver=simx --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./sgemmx -n 128
+open device connection
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 31504 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3841603, cycles=4239748, IPC=0.906092
+PERF: core1: instrs=3841602, cycles=4239770, IPC=0.906087
+PERF: core2: instrs=3841603, cycles=4239747, IPC=0.906093
+PERF: core3: instrs=3841603, cycles=4239749, IPC=0.906092
+PERF: instrs=15366411, cycles=4239770, IPC=3.624350
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 6/8 - Wednesday 04 June 2025 01:14:46 PM IST ===
+Configuration: cores=4, warps=4, threads=4, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=4 --threads=4 --driver=simx --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=4 -DNUM_THREADS=4" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./dot8 -n 128
+open device connection
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 24004 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3989058, cycles=4212528, IPC=0.946951
+PERF: core1: instrs=3989058, cycles=4213736, IPC=0.946680
+PERF: core2: instrs=3989058, cycles=4214407, IPC=0.946529
+PERF: core3: instrs=3989058, cycles=4211628, IPC=0.947153
+PERF: instrs=15956232, cycles=4214407, IPC=3.786116
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
+=== Test 7/8 - Wednesday 04 June 2025 01:15:13 PM IST ===
+Configuration: cores=4, warps=16, threads=16, app=sgemmx
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=16 --threads=16 --driver=simx --app=sgemmx --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/sgemmx run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./sgemmx -n 128
+open device connection
+data type: float
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x20000
+C_addr=0x30000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 21298 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=3892134, cycles=1509161, IPC=2.579005
+PERF: core1: instrs=3892134, cycles=1514979, IPC=2.569101
+PERF: core2: instrs=3892135, cycles=1504893, IPC=2.586320
+PERF: core3: instrs=3892134, cycles=1509172, IPC=2.578986
+PERF: instrs=15568537, cycles=1514979, IPC=10.276404
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/sgemmx'
+
+----------------------------------------
+=== Test 8/8 - Wednesday 04 June 2025 01:16:25 PM IST ===
+Configuration: cores=4, warps=16, threads=16, app=dot8
+Command: ./ci/blackbox.sh --clusters=1 --cores=4 --warps=16 --threads=16 --driver=simx --app=dot8 --args="-n 128"
+
+CONFIGS=-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16
+Running: CONFIGS="-DNUM_CLUSTERS=1 -DNUM_CORES=4 -DNUM_WARPS=16 -DNUM_THREADS=16" make -C ./ci/../runtime/simx > /dev/null
+Running: OPTS="-n 128" make -C ./ci/../tests/regression/dot8 run-simx
+make: Entering directory '/home/nikhil/vortex/build/tests/regression/dot8'
+LD_LIBRARY_PATH=/home/nikhil/vortex/build/runtime: VORTEX_DRIVER=simx ./dot8 -n 128
+open device connection
+data type: int8_t
+matrix size: 128x128
+allocate device memory
+A_addr=0x10000
+B_addr=0x14000
+C_addr=0x18000
+upload matrix A buffer
+upload matrix B buffer
+upload program
+upload kernel argument
+start device
+wait for completion
+Elapsed time: 21579 ms
+download destination buffer
+verify result
+cleanup
+PERF: core0: instrs=4039590, cycles=1641463, IPC=2.460969
+PERF: core1: instrs=4039590, cycles=1630854, IPC=2.476978
+PERF: core2: instrs=4039590, cycles=1647133, IPC=2.452498
+PERF: core3: instrs=4039590, cycles=1645193, IPC=2.455390
+PERF: instrs=16158360, cycles=1647133, IPC=9.809991
+PASSED!
+make: Leaving directory '/home/nikhil/vortex/build/tests/regression/dot8'
+
+----------------------------------------
