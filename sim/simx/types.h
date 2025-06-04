@@ -130,7 +130,7 @@ enum class AluType {
   SYSCALL,
   IMUL,
   IDIV,
-  DOT8 //new operation ALU can perform
+  DOT8
 };
 
 inline std::ostream &operator<<(std::ostream &os, const AluType& type) {
@@ -140,6 +140,7 @@ inline std::ostream &operator<<(std::ostream &os, const AluType& type) {
   case AluType::SYSCALL: os << "SYSCALL"; break;
   case AluType::IMUL:    os << "IMUL"; break;
   case AluType::IDIV:    os << "IDIV"; break;
+  case AluType::DOT8:    os << "DOT8"; break;
   default: assert(false);
   }
   return os;

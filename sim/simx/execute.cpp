@@ -1440,14 +1440,20 @@ void Emulator::execute(const Instr &instr, uint32_t wid, instr_trace_t *trace) {
         for (uint32_t t = thread_start; t < num_threads; ++t) {
           if (!warp.tmask.test(t))
             continue;
-          int32_t a = rsdata[t][0].i;
-          int32_t b = rsdata[t][1].i;
-          int32_t result = 0;
-          for (int i = 0; i < 4; ++i) {
-            int8_t a_i = (int8_t)((a >> (8 * i)) & 0xFF);
-            int8_t b_i = (int8_t)((b >> (8 * i)) & 0xFF);
-            result += a_i * b_i;
-          }
+          // Extract int8 values from 32-bit registers
+          int32_t a1 = (rsdata[t][0].i >> 0) & 0xFF;
+          int32_t a2 = (rsdata[t][0].i >> 8) & 0xFF;
+          int32_t a3 = (rsdata[t][0].i >> 16) & 0xFF;
+          int32_t a4 = (rsdata[t][0].i >> 24) & 0xFF;
+          
+          int32_t b1 = (rsdata[t][1].i >> 0) & 0xFF;
+          int32_t b2 = (rsdata[t][1].i >> 8) & 0xFF;
+          int32_t b3 = (rsdata[t][1].i >> 16) & 0xFF;
+          int32_t b4 = (rsdata[t][1].i >> 24) & 0xFF;
+          
+          // Calculate dot product
+          int32_t result = (a1 * b1) + (a2 * b2) + (a3 * b3) + (a4 * b4);
+          
           rddata[t].i = result;
         }
         rd_write = true;
@@ -1455,7 +1461,7 @@ void Emulator::execute(const Instr &instr, uint32_t wid, instr_trace_t *trace) {
       default:
         std::abort();
       }
-    } break;    
+    } break;
     default:
       std::abort();
     }

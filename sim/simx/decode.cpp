@@ -375,7 +375,6 @@ static const char* op_string(const Instr &instr) {
   case Opcode::FMNMSUB: return func2 ? "FNMSUB.D" : "FNMSUB.S";
   case Opcode::VSET:    return "VSET";
   case Opcode::EXT1:
-  //opcode definitons in vortex/sim/simx/instr.h (ext1 --> 0x0b)
     switch (func7) {
     case 0:
       switch (func3) {
@@ -390,11 +389,10 @@ static const char* op_string(const Instr &instr) {
       }
     case 1:
       switch (func3) {
-      case 0: return "VX_DOT8";
+      case 0: return "DOT8";
       default:
         std::abort();
       }
-    //dont need breaks cause cases either return or abort always --> no fall-through behaviour
     default:
       std::abort();
     }
@@ -586,14 +584,15 @@ std::shared_ptr<Instr> Emulator::decode(uint32_t code) const {
         break;
       case 1:
         switch (func3) {
-        case 0:
+        case 0:  // DOT8
           instr->setDestReg(rd, RegType::Integer);
           instr->addSrcReg(rs1, RegType::Integer);
           instr->addSrcReg(rs2, RegType::Integer);
           break;
         default:
           std::abort();
-        }  
+        }
+        break;
       default:
         std::abort();
       }
