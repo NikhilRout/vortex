@@ -431,4 +431,5 @@ However, in Multi-Core configurations, there is only a marginal improvement at l
 
 This behavior is likely due to resource contention (memory bandwidth bottleneck). Using coalesced memory access to read/write groups of 4 values from/to the packed registers used by the dot8 instruction could potentially address this issue
 
+___
 Note: `git submodule update --init --recursive` to fix toolchain installation errors locally after cloning
