@@ -350,6 +350,6 @@ The RTL implementation finds similar results to the cycle-level simulations
 
 In single-core configurations, increasing warps/threads per core results in higher relative IPC gains (39.3% with 16W-16T ; 38.1% with 4W-4T)
 
-However, in Multi-Core configurations, there is only a marginal improvement at lower warp/thread counts (9.9% with 4W-4T), and in contrast diminishes at higher warp/thread counts (% with 16W-16T)
+However, in Multi-Core configurations, there is only a marginal improvement at lower warp/thread counts (9.9% with 4W-4T), and in contrast diminishes at higher warp/thread counts (-6.7% with 16W-16T)
 
 This further backs the notion that this behavior is likely due to resource contention (memory bandwidth bottleneck). Using coalesced memory access to read/write groups of 4 values from/to the packed registers used by the dot8 instruction could potentially address this issue
