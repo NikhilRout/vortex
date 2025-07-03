@@ -31,7 +31,7 @@ module VX_tcu_bhf_bf16mul (
     localparam FP32_SIG_WIDTH = 24;
     
     //Control and rounding mode
-    localparam CONTROL = 1'b0;          //Default (tininess after rounding)
+    localparam CONTROL = 1'b1;          //Default (tininess after rounding)
     localparam [2:0] RNE = 3'b000;      //Round Near Even mode
     
     //Recoded format widths
@@ -65,10 +65,10 @@ module VX_tcu_bhf_bf16mul (
     wire raw_out_isZero;
     wire raw_out_sign;
     wire signed [BF16_EXP_WIDTH+1:0] raw_out_sExp;
-    wire [BF16_SIG_WIDTH+2:0] raw_out_sig;
+    wire [(BF16_SIG_WIDTH*2 -1):0] raw_out_sig; //16-bits
   
-    //Mul BF16 inputs to BF16 raw
-    mulRecFNToRaw #(
+    //Mul BF16 inputs to BF16 raw (double width sig)
+    mulRecFNToFullRaw #(
         .expWidth(BF16_EXP_WIDTH),
         .sigWidth(BF16_SIG_WIDTH)
     ) multiplier (
@@ -84,16 +84,18 @@ module VX_tcu_bhf_bf16mul (
         .out_sig(raw_out_sig)
     );
    
-    wire [BF16_REC_WIDTH-1:0] bf16_recoded;
-    wire [4:0] bf16_exception_flags;
-    `UNUSED_VAR(bf16_exception_flags)
+    wire [FP32_REC_WIDTH-1:0] fp32_recoded;
+    wire [4:0] fp32_exception_flags;
+    `UNUSED_VAR(fp32_exception_flags)
     
-    //Round raw BF16 result to recoded BF16 format (Required for feeding into addRecFN)
-    roundRawFNToRecFN #(
-        .expWidth(BF16_EXP_WIDTH),
-        .sigWidth(BF16_SIG_WIDTH),
+    //Round raw BF16 result to recoded FP32 format (Required for feeding into addRecFN)
+    roundAnyRawFNToRecFN #(
+        .inExpWidth(BF16_EXP_WIDTH),
+        .inSigWidth(BF16_SIG_WIDTH*2-1),    //15-bits (for 15:0 in_sig instantiation)
+        .outExpWidth(FP32_EXP_WIDTH),
+        .outSigWidth(FP32_SIG_WIDTH),
         .options(0)
-    ) bf16_rounder (
+    ) bf16_32rounder (
         .control(CONTROL),
         .invalidExc(raw_invalidExc),
         .infiniteExc(1'b0),
@@ -104,28 +106,10 @@ module VX_tcu_bhf_bf16mul (
         .in_sExp(raw_out_sExp),
         .in_sig(raw_out_sig),
         .roundingMode(RNE),
-        .out(bf16_recoded),
-        .exceptionFlags(bf16_exception_flags)
-    );
-    
-    wire [FP32_REC_WIDTH-1:0] fp32_recoded;
-    wire [4:0] fp32_exception_flags;
-    `UNUSED_VAR(fp32_exception_flags)
-    
-    //Converting recoded BF16 to recoded FP32
-    recFNToRecFN #(
-        .inExpWidth(BF16_EXP_WIDTH),
-        .inSigWidth(BF16_SIG_WIDTH),
-        .outExpWidth(FP32_EXP_WIDTH),
-        .outSigWidth(FP32_SIG_WIDTH)
-    ) format_converter (
-        .control(CONTROL),
-        .in(bf16_recoded),
-        .roundingMode(RNE),
         .out(fp32_recoded),
         .exceptionFlags(fp32_exception_flags)
     );
-    
+
     assign y = fp32_recoded;
 
     /*

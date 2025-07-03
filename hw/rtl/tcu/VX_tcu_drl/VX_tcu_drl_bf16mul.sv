@@ -13,7 +13,7 @@
 
 `include "VX_define.vh"
 
-module VX_tcu_bf16mul (
+module VX_tcu_drl_bf16mul (
     input  wire enable,
     input  wire [15:0] a, // bf16 input
     input  wire [15:0] b,
@@ -48,7 +48,7 @@ module VX_tcu_bf16mul (
     wire [7:0] full_mant_A = {hidden_A, frac_A};
     wire [7:0] full_mant_B = {hidden_B, frac_B};
     wire [15:0] product_mant; // = full_mant_A * full_mant_B;
-    VX_tcu_arraymul #(.N(8)) amul(.A(full_mant_A), .B(full_mant_B), .Prod(product_mant));
+    VX_tcu_drl_arraymul #(.N(8)) amul(.A(full_mant_A), .B(full_mant_B), .Prod(product_mant));
     
     //Partial norm for FP32 conversion
     wire normalize_shift = product_mant[15];

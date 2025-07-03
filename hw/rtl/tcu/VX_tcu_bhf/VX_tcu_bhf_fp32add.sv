@@ -25,7 +25,7 @@ module VX_tcu_bhf_fp32add (
     //FP32 format constants
     localparam EXP_WIDTH = 8;
     localparam SIG_WIDTH = 24;
-    localparam CONTROL = 1'b0;          //Default (tininess after rounding)
+    localparam CONTROL = 1'b1;          //Default (tininess after rounding)
     localparam [2:0] RNE = 3'b000;      //Round Near Even mode
 
     wire [EXP_WIDTH+SIG_WIDTH:0] sum_recoded;      //33-bit recoded result

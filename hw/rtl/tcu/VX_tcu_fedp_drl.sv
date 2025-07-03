@@ -59,7 +59,7 @@ module VX_tcu_fedp_drl #(
     // multiplication stage - instantiate custom modules
     for (genvar i = 0; i < TCK; i++) begin : g_prod
         // FP16 multiplication
-        VX_tcu_fp16mul fp16mul (
+        VX_tcu_drl_fp16mul fp16mul (
             .enable  (enable),
             .a       (a_row16[i]),
             .b       (b_col16[i]),
@@ -67,7 +67,7 @@ module VX_tcu_fedp_drl #(
         );
 
         // BF16 multiplication
-        VX_tcu_bf16mul bf16mul (
+        VX_tcu_drl_bf16mul bf16mul (
             .enable  (enable),
             .a       (a_row16[i]),
             .b       (b_col16[i]),
@@ -108,7 +108,7 @@ module VX_tcu_fedp_drl #(
         wire [31:0] red_comb [OUTSZ];
         
         for (genvar i = 0; i < OUTSZ; i++) begin : g_add
-            VX_tcu_fp32add fp32add (
+            VX_tcu_drl_fp32add fp32add (
                 .enable  (enable),
                 .a       (red_in[lvl][2*i+0]),
                 .b       (red_in[lvl][2*i+1]),
@@ -145,7 +145,7 @@ module VX_tcu_fedp_drl #(
     wire [31:0] result;
 
     // final accumulation
-    VX_tcu_fp32add final_fp32add (
+    VX_tcu_drl_fp32add final_fp32add (
         .enable  (enable),
         .a       (red_in[LEVELS][0]),
         .b       (delayed_c),

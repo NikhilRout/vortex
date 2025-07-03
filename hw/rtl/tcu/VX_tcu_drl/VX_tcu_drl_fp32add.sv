@@ -13,7 +13,7 @@
 
 `include "VX_define.vh"
 
-module VX_tcu_fp32add (
+module VX_tcu_drl_fp32add (
     input  wire enable,
     input wire [31:0] a, //fp32 input
     input wire [31:0] b,
