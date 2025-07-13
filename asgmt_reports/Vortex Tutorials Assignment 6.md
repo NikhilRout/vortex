@@ -1,5 +1,8 @@
 # Vortex Tutorials Assignment 6
 
+## Assignment #6: Dot Product Acceleration (RTL)
+https://github.com/vortexgpgpu/vortex_tutorials/blob/main/Exercises/assignment6.md
+
 Extending GPU Microarchitecture to accelerate a kernel in hardware. Implementing a new RISC-V custom instruction for computing integer dot product (VX_DOT8) in RTL
 
 ## Step 1 & 2
