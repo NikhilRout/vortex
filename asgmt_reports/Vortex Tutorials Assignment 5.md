@@ -1,5 +1,8 @@
 # Vortex Tutorials Assignment 5
 
+## Assignment #5: Dot Product Acceleration (SimX)
+https://github.com/vortexgpgpu/vortex_tutorials/blob/main/Exercises/assignment5.md
+
 ## Step 1: ISA Extension
 
 VX_DOT8 calculates the dot product of two 4x4 vectors of int8 integers (packed in a 32-bit register)
